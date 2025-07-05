@@ -2,6 +2,8 @@
 CountPTHT = 2
 --Berapa Kali
 
+idseed = 1 -- /finditem nama item
+
 DelayPT = 100
 -Delay Tanam
 
@@ -12,6 +14,7 @@ AntiCrash = true
 -Buat hidupin anti crash ketika ptht untuk mencegah crash
 
 NoDrop = true
+
 
 
 
@@ -47,7 +50,7 @@ function getReady()
 	local ready = 0
 	for y = ey, 0, -1 do
 		for x = 0, 199, 1 do
-			if GetTile(x, y).fg == 14767 and GetTile(x, y).readyharvest then
+			if GetTile(x, y).fg == idseed and GetTile(x, y).readyharvest then
 				ready = ready + 1
 			end
 		end
@@ -59,7 +62,7 @@ function harvest()
 		for y = ey, 0, -1 do
 LogToConsole("`9" .. os.date("%H`0:`9%M`0:`9%S") .."  `4R`2O`3C`4K`2Y  `4HT `0on `2Line```c = ```9" .. y)
 			for x = 0, 199, 1 do
-				if (GetTile(x, y).fg == 14767 and GetTile(x, y).readyharvest) then
+				if (GetTile(x, y).fg == idseed and GetTile(x, y).readyharvest) then
 					path(x, y, 5640)
 					Sleep(100)
 					h2(x, y, 18)
@@ -92,7 +95,7 @@ end
 function plant()
 	if getReady() < 20000 then
 		for y = ey, 0, -1 do
-LogToConsole("`9" .. os.date("%H`0:`9%M`0:`9%S") .." `cMENARI`#SCRIPT `4Planting `0on `2Line```c = ```9" .. y)
+LogToConsole("`9" .. os.date("%H`0:`9%M`0:`9%S") .." `4R`2O`3C`4K`2Y  `4Planting `0on `2Line```c = ```9" .. y)
 			for x = 0, 199, 10 do
 				if GetTile(x,y).fg == 0 and (GetTile(x,y+1).fg ~= 0 and GetTile(x,y+1).fg %2 == 0) then
 					path(x, y, 32)
